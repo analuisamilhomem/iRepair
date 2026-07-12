@@ -20,11 +20,11 @@ export function App() {
   }
 
   return (
-  <div>
+  <div className="bg-[#0d5c63] min-h-screen">
     <Header />
-    <h2 className= "font-bold px-4 py-4 mt-6 text-2xl">Adicionar uma nova ordem de serviço </h2>
+    <h2 className= "font-bold text-white px-4 py-4 mt-6 text-2xl">Adicionar uma nova ordem de serviço </h2>
     <NewServiceForm onSave={addOrder} />
-    <h2 className= "font-bold px-4 py-4 mt-6 text-2xl">Acompanhar ordens de serviço</h2>
+    <h2 className= "font-bold text-white px-4 py-4 mt-6 text-2xl">Acompanhar ordens de serviço</h2>
     <div  className="flex flex-wrap gap-4 mt-4">
       {orders.map((order, index) => (
       <ServiceCard 

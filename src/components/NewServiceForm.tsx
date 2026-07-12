@@ -22,7 +22,7 @@ export function NewServiceForm({onSave}: any) {
         <div>
             <input 
             name="nomeUsuario" 
-            className="border mt-2 ml-4 px-6 py-4 w-80 rounded-lg shadow-md" 
+            className="bg-white border mt-2 ml-4 px-6 py-4 w-80 rounded-lg shadow-md" 
             type="text" 
             id="input-nome-do-cliente" 
             placeholder="Digite o nome do cliente:"
@@ -31,7 +31,7 @@ export function NewServiceForm({onSave}: any) {
 
             <input 
             name="modeloAparelho" 
-            className="border mt-2 ml-4 px-6 py-4 w-80 rounded-lg shadow-md" 
+            className="bg-white border mt-2 ml-4 px-6 py-4 w-80 rounded-lg shadow-md" 
             type="text" 
             id="input-modelo-do-aparelho" 
             placeholder="Digite o modelo do aparelho:" 
@@ -40,7 +40,7 @@ export function NewServiceForm({onSave}: any) {
 
             <input 
             name="defeito" 
-            className="border mt-2 ml-4 px-6 py-4 w-80 rounded-lg shadow-md" 
+            className="bg-white border mt-2 ml-4 px-6 py-4 w-80 rounded-lg shadow-md" 
             type="text" 
             id="input-defeito" 
             placeholder="Digite o defeito:" 
@@ -49,7 +49,7 @@ export function NewServiceForm({onSave}: any) {
 
             <select 
             name="status" 
-            className="border mt-2 ml-4 px-6 py-4 w-80 rounded-lg shadow-md " 
+            className="bg-white border mt-2 ml-4 px-6 py-4 w-80 rounded-lg shadow-md " 
             id="input-status" 
             onChange= {fazMudanca}
             value={newOrder.status}>  
@@ -60,13 +60,13 @@ export function NewServiceForm({onSave}: any) {
 
             <input 
             name="prazoEntrega" 
-            className="border mt-2 ml-4 px-6 py-4 w-80 rounded-lg shadow-md "
+            className="bg-white border mt-2 ml-4 px-6 py-4 w-80 rounded-lg shadow-md "
             type="date" 
             id="input-prazo-entrega"
             onChange= {fazMudanca}
             value={newOrder.prazoEntrega}/>
 
-            <button className="bg-green-300 text-white border mt-2 ml-4 mr-4 px-6 py-4 w-40 rounded-lg shadow-md" type="button" onClick={() => onSave(newOrder)}>
+            <button className="bg-green-500 text-white border mt-2 ml-4 mr-4 px-6 py-4 w-40 rounded-lg shadow-md" type="button" onClick={() => onSave(newOrder)}>
                 Salvar
             </button>
 
