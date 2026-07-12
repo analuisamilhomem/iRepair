@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export function NewServiceForm() {
+export function NewServiceForm({onSave}) {
   const [newOrder, setNewOrder] = useState({
     nomeUsuario: "",
     modeloAparelho: "",
@@ -9,9 +9,9 @@ export function NewServiceForm() {
     prazoEntrega: ""
   })
 
-    function fazMudanca(e) {
-    const nomeDoCampo = e.target.name  
-    const valorDigitado = e.target.value 
+    function fazMudanca(change: any) {
+    const nomeDoCampo = change.target.name  
+    const valorDigitado = change.target.value 
 
     setNewOrder({ ...newOrder, [nomeDoCampo]: valorDigitado })
     }
@@ -65,6 +65,10 @@ export function NewServiceForm() {
             id="input-prazo-entrega"
             onChange= {fazMudanca}
             value={newOrder.prazoEntrega}/>
+
+            <button className="bg-green-500 text-white border mt-2 ml-4 mr-4 px-6 py-4 w-40 rounded-lg" type="button" onClick={() => onSave(newOrder)}>
+                Salvar
+            </button>
 
         </div>
       </form>

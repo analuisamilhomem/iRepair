@@ -8,6 +8,7 @@ import {useState} from 'react'
 
 import {NewServiceForm} from './components/NewServiceForm'
 
+
 export function App() {
   const [orders, setOrder] = useState<ServiceOrder[]>([
   {
@@ -19,11 +20,19 @@ export function App() {
     prazoEntrega: "13/07/2026"
   }
   ])
+
+  function addOrder(newOrder: ServiceOrder) {
+   const hoje = new Date().toLocaleDateString('pt-BR')
+   const prazoFormatado = new Date(newOrder.prazoEntrega).toLocaleDateString('pt-BR')
+   const ordemCompleta = { ...newOrder, dataPedido: hoje, prazoEntrega: prazoFormatado}
+   setOrder([...orders, ordemCompleta])
+  }
+
   return (
   <div>
     <Header />
     <h2 className= "font-bold px-4 py-4 mt-6 text-2xl">Adicionar uma nova ordem de serviço </h2>
-    <NewServiceForm />
+    <NewServiceForm onSave={addOrder} />
     <h2 className= "font-bold px-4 py-4 mt-6 text-2xl">Acompanhar ordens de serviço</h2>
     {orders.map((order, index) => (
       <ServiceCard 
