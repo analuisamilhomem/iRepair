@@ -22,8 +22,9 @@ export function App() {
   return (
   <div>
     <Header />
+    <h2 className= "font-bold px-4 py-4 mt-6 text-2xl">Adicionar uma nova ordem de serviço </h2>
     <NewServiceForm />
-    <h2 className= "font-bold px-4 py-4 mt-4 text-2xl">Acompanhar ordens de serviço</h2>
+    <h2 className= "font-bold px-4 py-4 mt-6 text-2xl">Acompanhar ordens de serviço</h2>
     {orders.map((order, index) => (
       <ServiceCard 
         key={index}
