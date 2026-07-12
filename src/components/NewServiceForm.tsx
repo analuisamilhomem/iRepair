@@ -1,8 +1,6 @@
 import { useState } from 'react'
 
-import type {ServiceOrder} from './ServiceCard'
-
-export function NewServiceForm({onSave}: {onSave: (order: ServiceOrder) => void}) {
+export function NewServiceForm({onSave}: any) {
   const [newOrder, setNewOrder] = useState({
     nomeUsuario: "",
     modeloAparelho: "",
@@ -68,7 +66,7 @@ export function NewServiceForm({onSave}: {onSave: (order: ServiceOrder) => void}
             onChange= {fazMudanca}
             value={newOrder.prazoEntrega}/>
 
-            <button className="bg-green-500 text-white border mt-2 ml-4 mr-4 px-6 py-4 w-40 rounded-lg" type="button" onClick={() => onSave(newOrder)}>
+            <button className="bg-green-300 text-white border mt-2 ml-4 mr-4 px-6 py-4 w-40 rounded-lg shadow-md" type="button" onClick={() => onSave(newOrder)}>
                 Salvar
             </button>
 
