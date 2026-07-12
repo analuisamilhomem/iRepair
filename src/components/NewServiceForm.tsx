@@ -1,6 +1,8 @@
 import { useState } from 'react'
 
-export function NewServiceForm({onSave}) {
+import type {ServiceOrder} from './ServiceCard'
+
+export function NewServiceForm({onSave}: {onSave: (order: ServiceOrder) => void}) {
   const [newOrder, setNewOrder] = useState({
     nomeUsuario: "",
     modeloAparelho: "",
