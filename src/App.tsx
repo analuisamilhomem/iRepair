@@ -4,7 +4,9 @@ import {ServiceCard} from './components/ServiceCard'
 
 import type {ServiceOrder} from './components/ServiceCard'
 
-import { useState } from 'react'
+import {useState} from 'react'
+
+import {NewServiceForm} from './components/NewServiceForm'
 
 export function App() {
   const [orders, setOrder] = useState<ServiceOrder[]>([
@@ -18,11 +20,13 @@ export function App() {
   }
   ])
   return (
-    <div> 
-      <Header />
-      {orders.map((order, index) => (
+  <div>
+    <Header />
+    <NewServiceForm />
+    <h2 className= "font-bold px-4 py-4 mt-4 text-2xl">Acompanhar ordens de serviço</h2>
+    {orders.map((order, index) => (
       <ServiceCard 
-        key= {index}
+        key={index}
         nomeUsuario={order.nomeUsuario}
         modeloAparelho={order.modeloAparelho}
         defeito={order.defeito}
@@ -31,6 +35,6 @@ export function App() {
         prazoEntrega={order.prazoEntrega}
       />
     ))}
-    </div>
-  )
+  </div>
+)
 }

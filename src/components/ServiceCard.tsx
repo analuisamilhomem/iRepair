@@ -1,4 +1,4 @@
-interface ServiceOrder {
+export interface ServiceOrder {
     nomeUsuario: string; 
     modeloAparelho: string; 
     defeito: string; 
@@ -9,7 +9,7 @@ interface ServiceOrder {
 
 export function ServiceCard ({nomeUsuario, modeloAparelho, defeito, status, dataPedido, prazoEntrega}: ServiceOrder) {
     return (
-        <div className="border px-6 py-4 w-80 rounded-lg shadow-md">
+        <div className="border mt-2 ml-4 px-6 py-4 w-80 rounded-lg shadow-md">
             <h3 className= "font-bold"> {nomeUsuario} </h3>
             <p>{modeloAparelho}</p>
             <p>{defeito}</p>
