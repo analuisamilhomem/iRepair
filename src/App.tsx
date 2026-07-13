@@ -19,6 +19,11 @@ export function App() {
    setOrder([...orders, ordemCompleta])
   }
 
+  function deleteOrder(index: number) {
+  const novaLista = orders.filter((order, i) => i !== index)
+  setOrder(novaLista)
+  }
+
   return (
   <div className="bg-[#0d5c63] min-h-screen">
     <Header />
@@ -35,6 +40,7 @@ export function App() {
         status={order.status}
         dataPedido={order.dataPedido}
         prazoEntrega={order.prazoEntrega}
+        onDelete={() => deleteOrder(index)}
       />
     ))}
     </div>
