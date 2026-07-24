@@ -79,16 +79,28 @@ const Clients = () => {
           value={newClient.email}
           onChange={handleChange}
         />
-        <button type="button" onClick={handleCreateClient}>
+        <button
+          type="button"
+          onClick={handleCreateClient}
+          className="bg-green-500 border border-green-700 text-white px-4 py-2 rounded" >
           Salvar
         </button>
       </div>
 
-     <ul>
+     <ul className="flex flex-wrap gap-4 mt-4">
         {clients.map((client) => (
-          <li key={client.id}>
-            {client.name} — {client.phone} — {client.email}
-            <button type="button" onClick={() => handleDeleteClient(client.id)}>
+          <li
+            key={client.id}
+            className="bg-white border rounded-lg shadow-md px-6 py-4 w-64"
+          >
+            <p>{client.name}</p>
+            <p>{client.phone}</p>
+            <p>{client.email}</p>
+            <button
+              type="button"
+              onClick={() => handleDeleteClient(client.id)}
+              className="bg-red-500 border border-red-700 text-white px-2 py-1 text-sm rounded mt-2"
+            >
               Deletar
             </button>
           </li>
