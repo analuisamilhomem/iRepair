@@ -9,19 +9,19 @@ import {useState} from 'react'
 import {NewServiceForm} from './components/NewServiceForm'
 
 
-export function App() {
+export const App = () => {
   const [orders, setOrder] = useState<ServiceOrder[]>([])
 
   function addOrder(newOrder: ServiceOrder) {
-   const hoje = new Date().toLocaleDateString('pt-BR')
-   const prazoFormatado = new Date(newOrder.prazoEntrega).toLocaleDateString('pt-BR')
-   const ordemCompleta = { ...newOrder, dataPedido: hoje, prazoEntrega: prazoFormatado}
-   setOrder([...orders, ordemCompleta])
+   const today = new Date().toLocaleDateString('pt-BR')
+   const formattedDeadline = new Date(newOrder.deadline).toLocaleDateString('pt-BR')
+   const completeOrder = { ...newOrder, orderDate: today, deadline: formattedDeadline}
+   setOrder([...orders, completeOrder])
   }
 
   function deleteOrder(index: number) {
-  const novaLista = orders.filter((order, i) => i !== index)
-  setOrder(novaLista)
+  const filteredList = orders.filter((order, i) => i !== index)
+  setOrder(filteredList)
   }
 
   return (
@@ -31,15 +31,16 @@ export function App() {
     <NewServiceForm onSave={addOrder} />
     <h2 className= "font-bold text-white px-4 py-4 mt-6 text-2xl">Acompanhar ordens de serviço</h2>
     <div  className="flex flex-wrap gap-4 mt-4">
+
       {orders.map((order, index) => (
       <ServiceCard 
         key={index}
-        nomeUsuario={order.nomeUsuario}
-        modeloAparelho={order.modeloAparelho}
-        defeito={order.defeito}
+        customerName={order.customerName}
+        deviceModel={order.deviceModel}
+        issue={order.issue}
         status={order.status}
-        dataPedido={order.dataPedido}
-        prazoEntrega={order.prazoEntrega}
+        orderDate={order.orderDate}
+        deadline={order.deadline}
         onDelete={() => deleteOrder(index)}
       />
     ))}
