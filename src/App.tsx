@@ -20,7 +20,7 @@ export const App = () => {
   }
 
   function deleteOrder(index: number) {
-  const filteredList = orders.filter((order, i) => i !== index)
+  const filteredList = orders.filter((_, i) => i !== index)
   setOrder(filteredList)
   }
 

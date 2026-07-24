@@ -28,7 +28,7 @@ const Dashboard = () => {
   return (
     <div>
       <h1 className='text-2xl font-bold px-3 py-5'>Dashboard</h1>
-      <ul>
+      <ul className='font-bold px-3'>
         {orders.map((order) => (
           <li key={order.id}>
             {order.device} — {order.issue} ({order.status})
