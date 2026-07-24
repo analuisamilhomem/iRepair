@@ -28,10 +28,23 @@ const Dashboard = () => {
   return (
     <div>
       <h1 className='text-2xl font-bold px-3 py-5'>Dashboard</h1>
-      <ul className='font-bold px-3'>
+      <ul className="px-3 flex flex-wrap gap-4">
         {orders.map((order) => (
-          <li key={order.id}>
-            {order.device} — {order.issue} ({order.status})
+          <li
+            key={order.id}
+            className="bg-white border rounded-lg shadow-md px-6 py-4 w-64"
+          >
+            <p>{order.device}</p>
+            <p>{order.issue}</p>
+            <p className={
+                    order.status === 'open'
+                    ? 'bg-green-300 inline px-1' : order.status === 'in_progress'
+                    ? 'bg-blue-300 inline px-1' : order.status === 'done'
+                    ? 'bg-red-300 inline px-1'   : ''
+                }
+                >
+                {order.status}
+                </p>
           </li>
         ))}
       </ul>
