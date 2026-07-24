@@ -58,36 +58,40 @@ const Clients = () => {
 
   return (
     <div>
-      <h1>Clientes</h1>
+      <h1 className='text-2xl font-bold px-3 py-5'>Clientes</h1>
 
-      <div>
+      <div className="flex flex-wrap px-3 gap-2 mb-4">
         <input
           name="name"
           placeholder="Nome"
           value={newClient.name}
           onChange={handleChange}
+          className="border rounded px-4 py-2"
         />
         <input
           name="phone"
           placeholder="Telefone"
           value={newClient.phone}
           onChange={handleChange}
+          className="border rounded px-4 py-2"
         />
         <input
           name="email"
           placeholder="Email"
           value={newClient.email}
           onChange={handleChange}
+          className="border rounded px-4 py-2"
         />
         <button
           type="button"
           onClick={handleCreateClient}
-          className="bg-green-500 border border-green-700 text-white px-4 py-2 rounded" >
+          className="bg-green-500 border border-green-700 text-white px-4 py-2 rounded"
+        >
           Salvar
         </button>
       </div>
 
-     <ul className="flex flex-wrap gap-4 mt-4">
+     <ul className="flex flex-wrap  px-3 gap-4 mt-4">
         {clients.map((client) => (
           <li
             key={client.id}
