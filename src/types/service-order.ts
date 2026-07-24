@@ -8,3 +8,10 @@ export interface ServiceOrder {
   status: Status;
   created_at: string;
 }
+
+export interface NewServiceOrder {
+  clientId: number;
+  device: string;
+  issue: string;
+  status?: Status;
+}

@@ -1,19 +1,19 @@
 import { useState } from 'react'
 
-export function NewServiceForm({onSave}: any) {
+export const NewServiceForm = ({ onSave }: any) => {
   const [newOrder, setNewOrder] = useState({
-    nomeUsuario: "",
-    modeloAparelho: "",
-    defeito: "",
+    customerName: "",
+    deviceModel: "",
+    issue: "",
     status: "",
-    prazoEntrega: ""
+    deadline: ""
   })
 
-    function fazMudanca(change: any) {
-    const nomeDoCampo = change.target.name  
-    const valorDigitado = change.target.value 
+    function handleChange(event: any) {
+    const fieldName = event.target.name  
+    const fieldValue = event.target.value 
 
-    setNewOrder({ ...newOrder, [nomeDoCampo]: valorDigitado })
+    setNewOrder({ ...newOrder, [fieldName]: fieldValue })
     }
 
    return (
@@ -21,37 +21,37 @@ export function NewServiceForm({onSave}: any) {
       <form> 
         <div>
             <input 
-            name="nomeUsuario" 
+            name="customerName" 
             className="bg-white border mt-2 ml-4 px-6 py-4 w-80 rounded-lg shadow-md" 
             type="text" 
             id="input-nome-do-cliente" 
             placeholder="Digite o nome do cliente:"
-            onChange= {fazMudanca}
-            value={newOrder.nomeUsuario} />
+            onChange= {handleChange}
+            value={newOrder.customerName} />
 
             <input 
-            name="modeloAparelho" 
+            name="deviceModel" 
             className="bg-white border mt-2 ml-4 px-6 py-4 w-80 rounded-lg shadow-md" 
             type="text" 
             id="input-modelo-do-aparelho" 
             placeholder="Digite o modelo do aparelho:" 
-             onChange= {fazMudanca}
-             value={newOrder.modeloAparelho}/>
+             onChange= {handleChange}
+             value={newOrder.deviceModel}/>
 
             <input 
-            name="defeito" 
+            name="issue" 
             className="bg-white border mt-2 ml-4 px-6 py-4 w-80 rounded-lg shadow-md" 
             type="text" 
             id="input-defeito" 
             placeholder="Digite o defeito:" 
-            onChange= {fazMudanca}
-            value={newOrder.defeito}/>
+            onChange= {handleChange}
+            value={newOrder.issue}/>
 
             <select 
             name="status" 
             className="bg-white border mt-2 ml-4 px-6 py-4 w-80 rounded-lg shadow-md " 
             id="input-status" 
-            onChange= {fazMudanca}
+            onChange= {handleChange}
             value={newOrder.status}>  
                 <option value="" disabled>Defina o status do pedido</option>
                 <option value="aberto">Aberto</option>
@@ -59,12 +59,12 @@ export function NewServiceForm({onSave}: any) {
             </select>
 
             <input 
-            name="prazoEntrega" 
+            name="deadline" 
             className="bg-white border mt-2 ml-4 px-6 py-4 w-80 rounded-lg shadow-md "
             type="date" 
             id="input-prazo-entrega"
-            onChange= {fazMudanca}
-            value={newOrder.prazoEntrega}/>
+            onChange= {handleChange}
+            value={newOrder.deadline}/>
 
             <button className="bg-green-500 text-white border mt-2 ml-4 mr-4 px-6 py-4 w-40 rounded-lg shadow-md" type="button" onClick={() => onSave(newOrder)}>
                 Salvar
