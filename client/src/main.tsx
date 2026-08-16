@@ -6,17 +6,28 @@ import Layout from './components/Layout.tsx';
 import Dashboard from './pages/Dashboard.tsx';
 import Clients from './pages/Clients.tsx';
 import ServiceOrders from './pages/ServiceOrders.tsx';
+import { AuthProvider } from './contexts/AuthContext.tsx';
+import { PrivateRoute } from './routes/PrivateRoute.tsx';
+import Login from './pages/Login.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="clients" element={<Clients />} />
-          <Route path="service-orders" element={<ServiceOrders />} />
-        </Route>
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          {/* Rota pública */}
+          <Route path="/login" element={<Login />} />
+
+          {/* Rotas protegidas */}
+          <Route element={<PrivateRoute />}>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Dashboard />} />
+              <Route path="clients" element={<Clients />} />
+              <Route path="service-orders" element={<ServiceOrders />} />
+            </Route>
+          </Route>
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   </StrictMode>,
 );
