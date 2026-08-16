@@ -2,17 +2,19 @@ import { useEffect, useState } from 'react';
 import { api } from '../services/api';
 import type { ServiceOrder, NewServiceOrder } from '../types/service-order';
 import type { Client } from '../types/client';
+import type { Device } from '../types/device';
 
 const ServiceOrders = () => {
   const [orders, setOrders] = useState<ServiceOrder[]>([]);
   const [clients, setClients] = useState<Client[]>([]);
+  const [devices, setDevices] = useState<Device[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   const [newOrder, setNewOrder] = useState<NewServiceOrder>({
-    clientId: 0,
-    device: '',
-    issue: '',
+  clientId: 0,
+  deviceId: 0,
+  issue: '',
   });
 
   useEffect(() => {
@@ -23,6 +25,8 @@ const ServiceOrders = () => {
 
         const clientsResponse = await api.get('/clients');
         setClients(clientsResponse.data);
+        const devicesResponse = await api.get('/devices');
+        setDevices(devicesResponse.data);
       } catch (e) {
         setError('Não foi possível carregar os dados.');
       } finally {
@@ -53,9 +57,10 @@ const ServiceOrders = () => {
       const response = await api.post('/service-orders', {
         ...newOrder,
         clientId: Number(newOrder.clientId),
+        deviceId: Number(newOrder.deviceId),
       });
       setOrders([...orders, response.data]);
-      setNewOrder({ clientId: 0, device: '', issue: '' });
+      setNewOrder({ clientId: 0, deviceId: 0, issue: '' });
     } catch (e) {
       setError('Não foi possível cadastrar a ordem de serviço.');
     }
@@ -82,13 +87,20 @@ const ServiceOrders = () => {
             </option>
           ))}
         </select>
-        <input
-          name="device"
-          placeholder="Aparelho"
-          value={newOrder.device}
+        <select
+          name="deviceId"
+          value={newOrder.deviceId}
           onChange={handleChange}
           className="border rounded px-4 py-2"
-        />
+        >
+          <option value={0} disabled>Selecione um aparelho</option>
+          {devices.map((device) => (
+            <option key={device.id} value={device.id}>
+              {device.model}
+            </option>
+          ))}
+        </select>
+        
         <input
           name="issue"
           placeholder="Defeito"
@@ -111,7 +123,7 @@ const ServiceOrders = () => {
             key={order.id}
             className="bg-white border rounded-lg shadow-md px-6 py-4 w-64"
           >
-            <p>{order.device}</p>
+            <p>{devices.find((device) => device.id === order.deviceId)?.model}</p>
             <p>{order.issue}</p>
             <p>{order.status}</p>
             <button

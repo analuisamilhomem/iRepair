@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { api } from '../services/api';
 import type { ServiceOrder } from '../types/service-order';
+import type { Device } from '../types/device';
 
 const Dashboard = () => {
   const [orders, setOrders] = useState<ServiceOrder[]>([]);
+  const [devices, setDevices] = useState<Device[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -12,6 +14,8 @@ const Dashboard = () => {
       try {
         const response = await api.get('/service-orders');
         setOrders(response.data);
+        const devicesResponse = await api.get('/devices');
+        setDevices(devicesResponse.data);
       } catch (e) {
         setError('Não foi possível carregar as ordens de serviço.');
       } finally {
@@ -34,7 +38,7 @@ const Dashboard = () => {
             key={order.id}
             className="bg-white border rounded-lg shadow-md px-6 py-4 w-64"
           >
-            <p>{order.device}</p>
+            <p>{devices.find((device) => device.id === order.deviceId)?.model}</p>
             <p>{order.issue}</p>
             <p className={
                     order.status === 'open'
