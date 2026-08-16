@@ -2,16 +2,16 @@ export type Status = 'open' | 'in_progress' | 'done';
 
 export interface ServiceOrder {
   id: number;
-  client_id: number;
-  device: string;
+  clientId: number;
+  deviceId: number;
   issue: string;
   status: Status;
-  created_at: string;
+  createdAt: string;
 }
 
 export interface NewServiceOrder {
   clientId: number;
-  device: string;
+  deviceId: number;
   issue: string;
   status?: Status;
 }
