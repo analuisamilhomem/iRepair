@@ -5,6 +5,7 @@ import { authRoutes } from '../domains/auth/auth.routes';
 import { clientsRoutes } from '../domains/clients/clients.routes';
 import { devicesRoutes } from '../domains/devices/devices.routes';
 import { errorHandler } from '../middlewares/errorHandler';
+import { serviceOrdersRoutes } from '../domains/service-orders/service-orders.routes';
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use('/auth', authRoutes);
 app.use('/clients', clientsRoutes);
 app.use('/devices', devicesRoutes);
+app.use('/service-orders', serviceOrdersRoutes);
 
 app.use(errorHandler);
 
